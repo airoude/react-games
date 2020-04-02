@@ -1,3 +1,7 @@
+/*
+ * CSS CREDITS GO TOWARDS: WEB DEV SIMPLIFIED
+ */
+
 *, *::after, *::before {
     box-sizing: border-box;
 }
@@ -6,6 +10,7 @@
     --cell-size: 100px;
     --mark-size: calc(var(--cell-size) * .9);
 }
+
 
 .gameStatus {
     position: absolute;
@@ -21,7 +26,6 @@
     border-radius: 8px;
     border: 1px solid black;
 }
-
 
 .board {
     width: 100vw;

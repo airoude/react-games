@@ -1,5 +1,5 @@
 import { assign, EventObject, Machine } from 'xstate'
-import { PLAYER, TilesMap, PLAYER_O, PLAYER_X, winningCombination, states } from '../constants'
+import { PLAYER, TilesMap, PLAYER_O, PLAYER_X, winningCombination, states } from 'consts'
 
 export interface GameContext {
   winner: string | null;

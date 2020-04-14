@@ -1,0 +1,19 @@
+.status {
+    position: absolute;
+    top: 30px;
+    left: 50%;
+}
+
+.status span {
+    position: relative;
+    left: -50%;
+    display: inline-block;
+    font-size: 32px;
+    padding: 8px 12px;
+    color: var(--white-color);
+    background-color: var(--midnight-blue-color);
+}
+
+.status span:not(:last-child) {
+    margin-right: 18px;
+}

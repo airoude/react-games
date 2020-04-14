@@ -3,19 +3,14 @@ import cn from 'classnames'
 
 interface CellProps {
   id: number;
-  onSelect: () => void;
+  selectTile: (tileId: number) => void;
   takenBy?: string | null;
 }
 
-const Cell: FC<CellProps> = ({ id, onSelect, takenBy }) => {
-  const classNames = cn('cell', takenBy)
-
-  return (
-    <div
-      data-cell-id={id}
-      className={classNames}
-      onClick={onSelect} />
-  )
-}
+const Cell: FC<CellProps> = ({ id, selectTile, takenBy }) => (
+  <div
+    onClick={() => selectTile(id)}
+    className={cn('cell', takenBy)} />
+)
 
 export default Cell

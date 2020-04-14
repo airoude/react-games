@@ -1,8 +1,8 @@
 import React, { FC } from 'react'
 import cn from 'classnames'
 import { Interpreter, State } from 'xstate'
-import { checkDraw, checkWinner, GameContext, GameEvents } from '../state/game'
-import { PLAYER_O, PLAYER_X, states } from '../constants'
+import { checkDraw, checkWinner, GameContext, GameEvents } from 'state/game'
+import { PLAYER_O, PLAYER_X, states } from 'consts'
 import Cell from './Cell'
 import './Board.css'
 
@@ -28,16 +28,15 @@ const Board: FC<BoardProps> = ({ machineState, machineService }) => {
 
   return (
     <div className={cn('board', {
-      'x-active': machineState.context.currentPlayer === PLAYER_X,
-      'o-active': machineState.context.currentPlayer === PLAYER_O,
-      'finished': machineState.matches(states.END_GAME)
+      'x-turn': machineState.context.currentPlayer === PLAYER_X,
+      'o-turn': machineState.context.currentPlayer === PLAYER_O,
     })}>
       {Array.from(Array(9).keys()).map((tileId) => (
         <Cell
           key={tileId}
           id={tileId}
           takenBy={machineState.context.selectedTiles.get(tileId)}
-          onSelect={() => onSelectTile(tileId)} />
+          selectTile={onSelectTile} />
       ))}
     </div>
   )

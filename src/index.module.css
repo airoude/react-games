@@ -13,6 +13,11 @@
   --midnight-blue-color: #2c3e50;
 }
 
+*, *::after, *::before {
+  position: relative;
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',

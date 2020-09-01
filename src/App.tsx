@@ -1,28 +1,27 @@
 import React, { FC } from 'react'
-import { useMachine } from 'state/useMachine'
-import gameMachine from 'state/game'
-import { CurrentPlayerContext } from 'contexts/currentPlayer'
-import { states } from 'consts'
+import { useMachine } from '@xstate/react/lib'
+import { CurrentGameContext } from 'contexts/currentGame'
+import gameMachine, { Events, States } from 'state/game'
 import Board from 'components/Board'
 import Button from 'components/Button'
 import Message from 'components/Message'
 import Center from 'components/Center'
-import styles from './App.module.css'
+import Status from 'components/Status'
 
 const App: FC = () => {
-  const [machineState, machineService] = useMachine(gameMachine)
+  const [state, send] = useMachine<GameContext, GameEvent>(gameMachine, { devTools: true })
 
-  if (machineState.matches(states.END_GAME)) {
+  if (state.matches(States.winner) || state.matches(States.draw)) {
     return (
       <Center>
-        <Message style={{ marginBottom: 64 }} type={machineState.context.draw ? 'primary' : 'success'}>
-          {machineState.context.draw && <span>IT'S A DRAW 👏🏼</span>}
-          {!machineState.context.draw && <span><b>{machineState.context.winner}</b> HAS WON 🎉</span>}
+        <Message style={{ marginBottom: 64 }} type={state.matches(States.draw) ? 'primary' : 'success'}>
+          {state.matches(States.draw) && <span>IT'S A DRAW 👏🏼</span>}
+          {state.matches(States.winner) && <span><b>{state.context.winner}</b> HAS WON 🎉</span>}
         </Message>
 
         <Button
           size="lg"
-          onClick={() => window.location.reload()}>
+          onClick={() => send(Events.RESET)}>
           Replay 👾
         </Button>
       </Center>
@@ -30,18 +29,15 @@ const App: FC = () => {
   }
 
   return (
-    <CurrentPlayerContext.Provider value={machineState.context.currentPlayer}>
-      <div className={styles.status}>
-        <span>ROUND {machineState.context.round}</span>
-        <span>{machineState.context.currentPlayer}'s TURN</span>
-      </div>
+    <CurrentGameContext.Provider value={state.context}>
+      <Status />
 
       <Center>
         <Board
-          machineState={machineState}
-          machineService={machineService} />
+          state={state}
+          selectTile={(tileId: number) => send({ type: Events.SELECT_TILE, tileId })} />
       </Center>
-    </CurrentPlayerContext.Provider>
+    </CurrentGameContext.Provider>
   );
 }
 

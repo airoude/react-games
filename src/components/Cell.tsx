@@ -3,13 +3,14 @@ import cn from 'classnames'
 
 interface CellProps {
   id: number;
-  selectTile: (tileId: number) => void;
+  selectTile: () => void;
   takenBy?: string | null;
 }
 
 const Cell: FC<CellProps> = ({ id, selectTile, takenBy }) => (
   <div
-    onClick={() => selectTile(id)}
+    data-tile-id={id}
+    onClick={selectTile}
     className={cn('cell', takenBy)} />
 )
 

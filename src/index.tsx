@@ -5,9 +5,9 @@ import ForkMe from './components/ForkMe'
 import './index.module.css';
 
 ReactDOM.render(
-  <>
+  <React.StrictMode>
     <ForkMe />
     <App />
-  </>,
+  </React.StrictMode>,
   document.getElementById('root')
 );

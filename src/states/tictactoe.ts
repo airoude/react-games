@@ -1,18 +1,18 @@
 import { assign, Machine, MachineOptions, MachineConfig } from 'xstate'
-import { PLAYER_O, PLAYER_X, winningCombination } from 'consts'
+import { PLAYER_O, PLAYER_X, winningCombination } from 'games/tictactoe/consts'
 
-export const States: Record<States, States> = {
+export const States: Record<TicTacToeStates, TicTacToeStates> = {
   playing: 'playing',
   winner: 'winner',
   draw: 'draw',
 }
 
-export const Events: Record<string, GameEvent['type']> = {
+export const Events: Record<string, TicTacToeStateEvent['type']> = {
   SELECT_TILE: 'selectTile',
   RESET: 'reset',
 }
 
-export const initialContext: GameContext = {
+export const initialContext: TicTacToeStateContext = {
   round: 1,
   winner: undefined,
   draw: undefined,
@@ -20,7 +20,7 @@ export const initialContext: GameContext = {
   tiles: new Map<number, Player | null>(Array(9).fill(null).map((v, i) => ([i, null]))),
 }
 
-const machineConfig: MachineConfig<GameContext, GameStateSchema, GameEvent> = {
+const machineConfig: MachineConfig<TicTacToeStateContext, TicTacToeStateSchema, TicTacToeStateEvent> = {
   id: 'tictactoe',
   initial: States.playing,
   strict: true,
@@ -53,7 +53,7 @@ const machineConfig: MachineConfig<GameContext, GameStateSchema, GameEvent> = {
   }
 }
 
-const machineOptions: MachineOptions<GameContext, GameEvent> = {
+const machineOptions: MachineOptions<TicTacToeStateContext, TicTacToeStateEvent> = {
   activities: {},
   delays: {},
   services: {},
@@ -94,4 +94,4 @@ const machineOptions: MachineOptions<GameContext, GameEvent> = {
   }
 }
 
-export default Machine<GameContext, GameStateSchema, GameEvent>(machineConfig, machineOptions, initialContext)
+export default Machine<TicTacToeStateContext, TicTacToeStateSchema, TicTacToeStateEvent>(machineConfig, machineOptions, initialContext)

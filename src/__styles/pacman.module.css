@@ -1,0 +1,20 @@
+:root {
+    --cell-size: 100px;
+    --mark-size: calc(var(--cell-size) * .9);
+    --light-blue-color: #00aba9;
+    --white-color: #ecf0f1;
+    --red-color: #e74c3c;
+    --orange-color: #e67e22;
+    --green-color: #2ecc71;
+    --blue-color: #3498db;
+    --indigo-color: #9b59b6;
+    --yellow-color: #f1c40f;
+    --midnight-grey-color: #34495e;
+    --midnight-blue-color: #2c3e50;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

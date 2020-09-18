@@ -1,44 +1,41 @@
-import React, { FC } from 'react'
-import { useMachine } from '@xstate/react/lib'
-import { CurrentGameContext } from 'contexts/currentGame'
-import gameMachine, { Events, States } from 'state/game'
-import Board from 'components/Board'
-import Button from 'components/Button'
-import Message from 'components/Message'
-import Center from 'components/Center'
-import Status from 'components/Status'
+import React, { FC } from 'react';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import ForkMe from 'components/ForkMe';
+import TicTacToe from 'games/tictactoe/Screen';
+import Pacman from 'games/pacman/Screen';
+import SelectGamePage from './GamesPage';
+import styles from './App.module.css';
 
-const App: FC = () => {
-  const [state, send] = useMachine<GameContext, GameEvent>(gameMachine, { devTools: true })
+const App: FC = () => (
+  <>
+    <ForkMe />
+    <Router>
+      <nav className={styles.nav}>
+        <Link to="/">React Games 🎮</Link>
+      </nav>
 
-  if (state.matches(States.winner) || state.matches(States.draw)) {
-    return (
-      <Center>
-        <Message style={{ marginBottom: 64 }} type={state.matches(States.draw) ? 'primary' : 'success'}>
-          {state.matches(States.draw) && <span>IT'S A DRAW 👏🏼</span>}
-          {state.matches(States.winner) && <span><b>{state.context.winner}</b> HAS WON 🎉</span>}
-        </Message>
+      <section className={styles.container}>
+        <Switch>
+          <Route path="/tictactoe">
+            <TicTacToe />
+          </Route>
+          <Route path="/pacman">
+            <Pacman />
+          </Route>
+          <Route path="/">
+            <SelectGamePage />
+          </Route>
+        </Switch>
+      </section>
 
-        <Button
-          size="lg"
-          onClick={() => send(Events.RESET)}>
-          Replay 👾
-        </Button>
-      </Center>
-    )
-  }
-
-  return (
-    <CurrentGameContext.Provider value={state.context}>
-      <Status />
-
-      <Center>
-        <Board
-          state={state}
-          selectTile={(tileId: number) => send({ type: Events.SELECT_TILE, tileId })} />
-      </Center>
-    </CurrentGameContext.Provider>
-  );
-}
+      <footer className={styles.footer}>
+        Made by{' '}
+        <a href="https://airou.de" rel="noreferrer noopener">
+          Youssef Airoude
+        </a>
+      </footer>
+    </Router>
+  </>
+);
 
 export default App;

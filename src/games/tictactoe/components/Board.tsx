@@ -1,12 +1,12 @@
 import React, { FC } from 'react'
 import cn from 'classnames'
 import { State } from 'xstate'
-import { PLAYER_O, PLAYER_X } from 'consts'
+import { PLAYER_O, PLAYER_X } from 'games/tictactoe/consts'
 import Cell from './Cell'
 import './Board.css'
 
 interface BoardProps {
-  state: State<GameContext, GameEvent>;
+  state: State<TicTacToeStateContext, TicTacToeStateEvent, TicTacToeStateSchema>;
   selectTile: (tileId: number) => void;
 }
 

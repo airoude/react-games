@@ -1,0 +1,12 @@
+.selectScreen {
+    margin: 0 100px;
+    text-align: center;
+}
+
+.link {
+    padding: 6px 12px;
+    margin-right: 4px;
+    text-decoration: none;
+    background: var(--blue-color);
+    color: var(--white-color);
+}

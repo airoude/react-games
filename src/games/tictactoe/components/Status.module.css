@@ -1,13 +1,10 @@
 .status {
-    position: absolute;
-    top: 30px;
-    left: 50%;
+    margin-top: 64px;
+    display: flex;
+    justify-content: center;
 }
 
 .status span {
-    position: relative;
-    left: -50%;
-    display: inline-block;
     font-size: 32px;
     padding: 8px 12px;
     color: var(--white-color);

@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { useCurrentGame } from 'contexts/currentGame'
+import { useCurrentGame } from 'games/tictactoe/contexts/currentGame'
 import styles from './Status.module.css'
 
 const Status: FC = () => {

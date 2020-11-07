@@ -7,6 +7,7 @@ import { Direction } from 'games/pacman/consts';
 import Board from 'games/pacman/components/Board';
 import Score from 'games/pacman/components/Score';
 import styles from '__styles/pacman.module.css';
+import { isDev } from 'utils';
 
 inspect({
   url: 'https://statecharts.io/inspect',
@@ -14,7 +15,7 @@ inspect({
 });
 
 const Screen: FC = () => {
-  const [state, send] = useMachine(gameMachine);
+  const [state, send] = useMachine<PacmanStateContext, PacmanStateEvent>(gameMachine, { devTools: isDev() });
 
   useEffect(() => {
     const onKeyPress = (e: KeyboardEvent) => {
@@ -58,11 +59,7 @@ const Screen: FC = () => {
   }, [send]);
 
   return (
-    <div
-      className={cn(styles.container, {
-        paused: state.context.state === 'PAUSED'
-      })}
-    >
+    <div className={cn(styles.container, { paused: state.context.state === 'PAUSED' })}>
       <Board state={state} />
       <Score score={state.context.score} />
     </div>

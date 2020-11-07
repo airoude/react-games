@@ -1,9 +1,6 @@
 .center {
     display: flex;
-    justify-content: center;
-    align-content: center;
-    justify-items: center;
-    align-items: center;
-    transition: 650ms ease-in;
+    place-content: center;
+    place-items: center;
     flex-direction: column;
 }

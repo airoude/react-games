@@ -15,12 +15,12 @@ const Board: FC<BoardProps> = ({ state, selectTile }) => (
     'x-turn': state.context.currentPlayer === PLAYER_X,
     'o-turn': state.context.currentPlayer === PLAYER_O,
   })}>
-    {Array.from(state.context.tiles.entries()).map(([ tileId, takenByPlayer ]) => (
+    {Array.from(state.context.tiles.entries()).map(([tileId, takenByPlayer]) => (
       <Cell
         key={tileId}
         id={tileId}
         takenBy={takenByPlayer}
-        selectTile={() => selectTile(tileId)} />
+        selectTile={selectTile} />
     ))}
   </div>
 )

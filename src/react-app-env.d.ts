@@ -1,7 +1,7 @@
 /// <reference types="react-scripts" />
 
-type Player = 'o' | 'x'
-type TilesMap = Map<number, Player | null>
+type Player = 'o' | 'x';
+type TilesMap = Map<number, Player | null>;
 
 interface TicTacToeStateContext {
   winner: string | undefined;
@@ -16,14 +16,11 @@ interface TicTacToeStateSchema {
     playing: {};
     winner: {};
     draw: {};
-  }
+  };
 }
 
-type TicTacToeStates = 'playing' | 'winner' | 'draw'
-type TicTacToeStateEvent =
-  | { type: 'reset' }
-  | { type: 'selectTile', tileId: number };
-
+type TicTacToeStates = 'playing' | 'winner' | 'draw';
+type TicTacToeStateEvent = { type: 'reset' } | { type: 'selectTile'; tileId: number };
 
 ////////////////////////
 //////// PACMAN ////////
@@ -31,12 +28,12 @@ type TicTacToeStateEvent =
 type MovementDirection = 'LEFT' | 'RIGHT' | 'UP' | 'DOWN';
 type GhostType = 'PINKY' | 'BLINKY' | 'INKY' | 'CLYDE';
 type TileSprite = 'DOT' | 'WALL' | 'GHOST_LAIR' | 'POWER_PELLET' | 'EMPTY';
-type PacmanStates = 'WIN' | 'LOSE' | 'ACTIVE' | 'PAUSED'
+type PacmanStates = 'WIN' | 'LOSE' | 'ACTIVE' | 'PAUSED';
 
 type Pacman = {
   position: number;
   speed: number;
-}
+};
 
 type Ghost = {
   timerId?: NodeJS.Timeout;
@@ -44,7 +41,7 @@ type Ghost = {
   isScared: boolean;
   position: number;
   speed: number;
-}
+};
 
 interface PacmanStateContext {
   score: number;
@@ -52,6 +49,7 @@ interface PacmanStateContext {
   pacman: Pacman;
   ghosts: Ghost[];
   layout: number[];
+  timerId?: undefined;
 }
 
 interface PacmanStateSchema {
@@ -59,13 +57,10 @@ interface PacmanStateSchema {
     idle: {};
     win: {};
     gameOver: {};
-  }
+  };
 }
 
 type PacmanPauseEvent = { type: 'PAUSE_GAME' };
-type PacmanMovePacmanEvent = { type: 'MOVE_PACMAN', direction: MovementDirection };
-type PacmanMoveGhostEvent = { type: 'MOVE_GHOST', direction: MovementDirection, ghost: Ghost };
-type PacmanStateEvent =
-  | PacmanPauseEvent
-  | PacmanMovePacmanEvent
-  | PacmanMoveGhostEvent;
+type PacmanMovePacmanEvent = { type: 'MOVE_PACMAN'; direction: MovementDirection };
+type PacmanMoveGhostEvent = { type: 'MOVE_GHOST'; direction: MovementDirection; ghost: Ghost };
+type PacmanStateEvent = PacmanPauseEvent | PacmanMovePacmanEvent | PacmanMoveGhostEvent;

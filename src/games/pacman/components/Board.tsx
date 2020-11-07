@@ -6,20 +6,30 @@ import Wall from './sprites/Wall';
 import Lair from './sprites/Lair';
 import PowerPellet from './sprites/PowerPellet';
 import EmptySpace from './sprites/EmptySpace';
-import styles from './Board.module.css'
 import Pacman from './sprites/Pacman';
 import Ghost from './sprites/Ghost';
+import styles from './Board.module.css';
 
-const Board: FC<{ state: State<PacmanStateContext, PacmanStateEvent, PacmanStateSchema> }> = ({ state }) =>  (
+interface BoardProps {
+  state: State<PacmanStateContext, PacmanStateEvent, PacmanStateSchema>;
+}
+
+const Board: FC<BoardProps> = ({ state }) => (
   <div className={styles.grid}>
     {state.context.layout.map((gridValue, idx) => {
       if (idx === state.context.pacman.position) {
-        return <Pacman key={idx} />
+        return <Pacman key={idx} />;
       }
 
-      const ghost = state.context.ghosts.find(ghost => ghost.position === idx)
+      const ghost = state.context.ghosts.find(ghost => ghost.position === idx);
       if (ghost) {
-        return <Ghost name={ghost.name} isScared={ghost.isScared} key={idx} />
+        return (
+          <Ghost
+            key={idx}
+            name={ghost.name}
+            isScared={ghost.isScared}
+          />
+        )
       }
 
       switch (gridValue) {
@@ -33,6 +43,6 @@ const Board: FC<{ state: State<PacmanStateContext, PacmanStateEvent, PacmanState
       return null;
     })}
   </div>
-)
+);
 
-export default Board
+export default Board;

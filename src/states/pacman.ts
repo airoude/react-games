@@ -1,4 +1,4 @@
-import { actions, Machine } from 'xstate';
+import { Machine } from 'xstate';
 import { MachineConfig, MachineOptions } from 'xstate/lib/types';
 import { assign } from '@xstate/immer';
 import * as c from 'games/pacman/consts';
@@ -157,6 +157,7 @@ const options: MachineOptions<PacmanStateContext, PacmanStateEvent> = {
     cleanup: assign((ctx, e) => {
       ctx.ghosts.forEach((ghost) => {
         if (ghost.timerId) {
+          // @ts-ignore
           clearInterval(ghost.timerId);
           ghost.timerId = undefined;
         }

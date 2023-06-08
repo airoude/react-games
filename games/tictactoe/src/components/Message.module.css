@@ -1,0 +1,20 @@
+.message span {
+    font-size: 8rem;
+    padding: 32px;
+    color: black;
+    background-color: var(--white-color);
+    border-radius: 8px;
+}
+
+.primary span, .danger span, .success span {
+    color: var(--white-color);
+}
+.primary span {
+    background-color: var(--blue-color);
+}
+.danger span {
+    background-color: var(--red-color);
+}
+.success span {
+    background-color: var(--green-color);
+}

@@ -1,0 +1,25 @@
+.button {
+    padding: 8px 12px;
+    border: 0;
+    border-radius: 4px;
+    font-size: 1rem;
+    background-color: var(--blue-color);
+    color: var(--white-color);
+    outline: none;
+    transition: 200ms ease-out;
+}
+
+.sm {
+    font-size: 0.8rem;
+    padding: 6px 8px;
+}
+.lg {
+    font-size: 1.5rem;
+    padding: 12px 16px;
+}
+
+.button:hover, .button:active {
+    cursor: pointer;
+    transition: 200ms ease-in-out;
+    background-color: var(--midnight-blue-color);
+}

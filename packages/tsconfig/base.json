@@ -2,19 +2,27 @@
   "$schema": "https://json.schemastore.org/tsconfig",
   "display": "Default",
   "compilerOptions": {
-    "composite": false,
+    "composite": true,
     "declaration": true,
     "declarationMap": true,
     "esModuleInterop": true,
+    "module": "ESNext",
+    "moduleResolution": "bundler",
     "forceConsistentCasingInFileNames": true,
+    "allowSyntheticDefaultImports": true,
     "inlineSources": false,
     "isolatedModules": true,
-    "moduleResolution": "node",
     "noUnusedLocals": false,
     "noUnusedParameters": false,
+    "noFallthroughCasesInSwitch": true,
     "preserveWatchOutput": true,
     "skipLibCheck": true,
-    "strict": true
+    "strict": true,
+    "baseUrl": "src",
+    "paths": {
+      "@/*": ["*"]
+    }
   },
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules"],
+  "include": ["vite.config.ts"]
 }

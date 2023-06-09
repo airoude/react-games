@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/tic-tac-toe",
-      "destination": "tictactoe.game.airou.de"
+      "destination": "https://tictactoe.game.airou.de"
     }
   ]
 }

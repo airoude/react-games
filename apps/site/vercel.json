@@ -1,8 +1,8 @@
 {
   "rewrites": [
     {
-      "source": "/tic-tac-toe",
-      "destination": "https://tictactoe.game.airou.de"
+      "source": "/tic-tac-toe/:match*",
+      "destination": "https://tictactoe.game.airou.de/:match*"
     }
   ]
 }
